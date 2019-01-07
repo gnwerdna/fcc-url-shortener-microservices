@@ -29,6 +29,15 @@ app.get('/', function(req, res){
 });
 const appUrl = "localhost:3000/";
 
+var siteSchema = new mongoose.Schema({
+  longUrl : String,
+  shortUrl : String
+});
+
+const Site = mongoose.model('Site', siteSchema);
+
+var createAndSaveSite = 
+
 app.get("/new/:originalUrl", (req, res) => {
   var { originalUrl } = req.params;
   var uniqueId = new Date().getTime();
