@@ -1,27 +1,21 @@
-Welcome to Glitch
-=================
-
-Click `Show` in the header to see your app live. Updates to your code will instantly deploy and update live.
-
-**Glitch** is the friendly community where you'll build the app of your dreams. Glitch lets you instantly create, remix, edit, and host an app, bot or site, and you can invite collaborators or helpers to simultaneously edit code with you.
-
-Find out more [about Glitch](https://glitch.com/about).
+# API Project: URL Shortener Microservice for freeCodeCamp
 
 
-Your Project
-------------
+### User Stories
 
-On the front-end,
-- edit `public/client.js`, `public/style.css` and `views/index.html`
-- drag in `assets`, like images or music, to add them to your project
-
-On the back-end,
-- your app starts at `server.js`
-- add frameworks and packages in `package.json`
-- safely store app secrets in `.env` (nobody can see this but you and people you invite)
+1. I can POST a URL to `[project_url]/api/shorturl/new` and I will receive a shortened URL in the JSON response. Example : `{"original_url":"www.google.com","short_url":1}`
+2. If I pass an invalid URL that doesn't follow the valid `http(s)://www.example.com(/more/routes)` format, the JSON response will contain an error like `{"error":"invalid URL"}`. *HINT*: to be sure that the submitted url points to a valid site you can use the function `dns.lookup(host, cb)` from the `dns` core module.
+3. When I visit the shortened URL, it will redirect me to my original link.
 
 
-Made by [Glitch](https://glitch.com/)
--------------------
+#### Creation Example:
 
-\ ゜o゜)ノ
+POST [project_url]/api/shorturl/new - body (urlencoded) :  url=https://www.google.com
+
+#### Usage:
+
+[this_project_url]/api/shorturl/3
+
+#### Will redirect to:
+
+http://forum.freecodecamp.com
