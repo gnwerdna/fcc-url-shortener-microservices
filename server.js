@@ -30,8 +30,9 @@ app.get('/', function(req, res){
 const appUrl = "localhost:3000/";
 
 var siteSchema = new mongoose.Schema({
-  longUrl : String,
-  shortUrl : String
+  originalUrl : String,
+  shortUrl : String,
+  uniqueId: Number
 });
 
 const Site = mongoose.model('Site', siteSchema);
@@ -42,7 +43,15 @@ app.get("/new/:originalUrl", (req, res) => {
   var { originalUrl } = req.params;
   var uniqueId = new Date().getTime();
   var shortUrl = appUrl + uniqueId;
+  const newSite = new Site({
+    originalUrl: originalUrl,
+    shortUrl: shortUrl,
+    uniqueId: uniqueId
+  });
   
+  newSite.save((err, data) => {
+    err ? console.log("error when insert data") : console.log("success");
+  });
 });
 
 // your first API endpoint... 
