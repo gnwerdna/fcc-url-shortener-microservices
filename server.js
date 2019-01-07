@@ -27,9 +27,15 @@ mongoose.connect(process.env.MONGO_URL);
 app.get('/', function(req, res){
   res.sendFile(process.cwd() + '/views/index.html');
 });
+const appUrl = "localhost:3000/";
 
-
+app.get("/new/:originalUrl", (req, res) => {
+  var { originalUrl } = req.params;
+  var uniqueId = new Date().getTime();
+  var shortUrl = appUrl + uniqueId;
   
+});
+
 // your first API endpoint... 
 app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
