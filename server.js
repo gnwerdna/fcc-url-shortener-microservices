@@ -61,7 +61,11 @@ app.get("/new/:originalUrl", (req, res) => {
 
 app.get("/:uniqueId", (req, res) => {
   let { uniqueId } = req.params;
-  Site.find({uniqueId: uniqueId})
+  Site.find({uniqueId: uniqueId}, (err, data) => {
+    if(err) {res.send(err)}
+    if(data == "") { res.send("no matching result")}
+    res.send(data);
+  });
 });
 
 // your first API endpoint... 
