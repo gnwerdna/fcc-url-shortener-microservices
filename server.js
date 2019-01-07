@@ -64,7 +64,9 @@ app.get("/:uniqueId", (req, res) => {
   Site.find({uniqueId: uniqueId}, (err, data) => {
     if(err) {res.send(err)}
     if(data == "") { res.send("no matching result")}
-    res.send(data);
+    var l = data[0].originalUrl;
+    if(l.indexOf('http') == -1) {l += "https://"+l}
+    res.redirect(l);
   });
 });
 
