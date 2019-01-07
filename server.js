@@ -21,12 +21,9 @@ app.use(cors());
 
 app.use('/public', express.static(process.cwd() + '/public'));
 
-app.get('/new/:urlToShorten(*)', 
-        (req, res, next) => {
-          let { urlToShorten } = req.params;
-          console.log(urlToShorten);
 
-});
+mongoose.connect(process.env.MONGO_URL);
+
 
 app.get('/', function(req, res){
   res.sendFile(process.cwd() + '/views/index.html');
