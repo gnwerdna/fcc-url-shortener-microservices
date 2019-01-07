@@ -50,8 +50,18 @@ app.get("/new/:originalUrl", (req, res) => {
   });
   
   newSite.save((err, data) => {
-    err ? console.log("error when insert data") : console.log("success");
+    if(err) {console.log("error when inserting data");}
+    var obj = {
+      original_url: data.originalUrl,
+      short_url: data.shortUrl
+    }
+    res.send(obj);
   });
+});
+
+app.get("/:uniqueId", (req, res) => {
+  let { uniqueId } = req.params;
+  Site.find({uniqueId: uniqueId})
 });
 
 // your first API endpoint... 
