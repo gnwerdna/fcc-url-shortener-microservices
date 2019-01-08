@@ -37,17 +37,25 @@ var siteSchema = new mongoose.Schema({
 
 const Site = mongoose.model('Site', siteSchema);
 
-var createAndSaveSite = 
-
-app.get("/new/:originalUrl", (req, res) => {
-  var { originalUrl } = req.params;
+app.post('/new/originalUrl', (req, res) => {
   var uniqueId = new Date().getTime();
   var shortUrl = appUrl + uniqueId;
   const newSite = new Site({
-    originalUrl: originalUrl,
+    originalUrl: req.body.originalUrl,
     shortUrl: shortUrl,
     uniqueId: uniqueId
   });
+});
+
+app.get("/new/:originalUrl", (req, res) => {
+  var { originalUrl } = req.params;
+  // var uniqueId = new Date().getTime();
+//   var shortUrl = appUrl + uniqueId;
+//   const newSite = new Site({
+//     originalUrl: originalUrl,
+//     shortUrl: shortUrl,
+//     uniqueId: uniqueId
+//   });
   
   newSite.save((err, data) => {
     if(err) {console.log("error when inserting data");}
